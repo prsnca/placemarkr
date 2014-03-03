@@ -15,11 +15,18 @@
 					<center>
 						סהכ הצבעות
 					</center></th>
+                    {% if user == urlUser %}
+                    <th>
+                    <center>
+						עריכה
+					</center></th>
+                    </th>
+                    {% endif %}
 				</tr>
 			</thead>
 			{% for p in places %}
-			<tr data-value="{% url 'place' p.id%}">
-				<td>{{p.vendor_id}}</td>
+			<tr>
+				<td data-value="{% url 'place' p.id%}">{{p.vendor_id}}</td>
 				<td>{{p.title}}</td>
 				<td>{{p.address}}</td>
 				<td>{{p.city}}</td>
@@ -31,6 +38,16 @@
 				<center>
 					<span class="badge">{{ p.number_of_votes }}</span>
 				</center></td>
+
+                {% if user == urlUser %}
+                <td>
+                    <center>
+						<button class="btn btn-sm btn-default openEditPlace" > <!-- data-toggle="modal" data-target="#editPlaceModal" -->
+                            <span class="glyphicon glyphicon-pencil"></span>
+						</button>
+					</center></th>
+                </td>
+                {% endif %}
 			</tr>
 			{% endfor %}
 		</table>
