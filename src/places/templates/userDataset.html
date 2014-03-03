@@ -53,7 +53,18 @@
 
 	<div class="page-header" style="margin-top: 0px;">
 		<h1 >{{ dataset.name }}</h1>
-		<h5>{{ dataset.description }}</h5>
+        <div class="row">
+            <div class="col-md-1">
+            {% if user == urlUser %}
+                <button type="button" class="btn btn-default btn-primary" data-toggle="modal" data-target="#addPlaceModal">
+הוסף מיקום
+<span class="glyphicon glyphicon-plus"></span>
+			  </span>
+            </button>
+            {% endif %}
+            </div>
+		    <div class="col-md-offset-5 col-md-6"><h5>{{ dataset.description }}</h5></div>
+        </div>
 	</div>
 
 	<div id="dataset-content">
@@ -70,7 +81,6 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title" id="myModalLabel"> עריכה</h4>
             </div>
             <div class="modal-body">
@@ -81,6 +91,38 @@
                      <div class="form-group">
                         <label class="control-label">כתובת</label>
                         <input type="text" id="address" class="form-control" disabled placeholder="כתובת">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label"> נתונים</label>
+                        <textarea id="data" rows="5" class="form-control" placeholder="נתונים על המיקום"> </textarea>
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">סגור</button>
+                <button type="button" class="btn btn-primary">שמור שינויים</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="addPlaceModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">הוסף מיקום חדש</h4>
+            </div>
+            <div class="modal-body">
+                    <div class="form-group">
+                        <label class="control-label">                            שם המקום                        </label>
+                        <input type="text" id="title" class="form-control" placeholder="שם" >
+                    </div>
+                     <div class="form-group">
+                        <label class="control-label">כתובת</label>
+                        <input type="text" id="address" class="form-control"  placeholder="כתובת">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">עיר</label>
+                        <input type="text" id="address" class="form-control" placeholder="עיר">
                     </div>
                     <div class="form-group">
                         <label class="control-label"> נתונים</label>
