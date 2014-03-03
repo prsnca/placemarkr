@@ -46,7 +46,7 @@ def register(request):
             login(request, new_user)
             return HttpResponseRedirect('/user/' + new_user.username)
     context = {'registration_form' : UserCreateForm() }
-    return render(request, 'account\signup.html', context)
+    return render(request, 'account/signup.html', context)
 
 
 @login_required
