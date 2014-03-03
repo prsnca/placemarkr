@@ -21,11 +21,16 @@ $(function() {
 		$.get('datasetList.html', function(data) {
 			$("#dataset-content").empty().html(data);
 			$( "tr" ).css("cursor","pointer");
-			$(function() {
-				$("tr").click(function() {
-					window.location = $(this).data('value');
-				});
-			});
+            $("tr").click(function(event) {
+                console.log(event.target);
+                window.location = $(this).data('value');
+            });
+            $(".openEditPlace").click(function (event) {
+                event.stopPropagation();
+                $('#editPlaceModal').modal('show');
+
+            });
+
 		});
 	});
 	$("#album-view-button").click(function(event) {
@@ -42,6 +47,8 @@ $(function() {
 	});
 
 	$("#list-view-button").click();
+
+
 });
 
 function selectViewOptions(optionElement) {
@@ -126,4 +133,6 @@ function fitBounds(map, dataset) {
 		google.maps.event.removeListener(blistener);
 	});
 }
+
+
 
