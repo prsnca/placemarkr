@@ -209,6 +209,3 @@ if os.environ.get('DATABASE_URL'): # Heroku
     STATICFILES_DIRS = (
         os.path.join(BASE_DIR, 'static'),
     )
-    
-    DEBUG = False
-    TEMPLATE_DEBUG = DEBUG
