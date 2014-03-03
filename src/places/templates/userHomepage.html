@@ -24,6 +24,13 @@
 	<div class="row">
 		<div class="col-md-8">
 			<h3>עדכונים</h3>
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
 		</div>
 		<div class="col-md-4">
 			<div class="panel panel-default">
@@ -81,15 +88,15 @@
 					</div>
                     <label >בחר את אופן הזנת הנתונים:</label>
                       <label>
-                        <input type="radio" name="fileOrManual" id="fileOrManual1" value="file" checked>קובץ</label>
+                        <input type="radio" name="upload_method" id="upload_method1" value="file" checked>קובץ</label>
                       <label>
-                        <input type="radio" name="fileOrManual" id="fileOrManual2" value="manual">ידנית</label>
+                        <input type="radio" name="upload_method" id="upload_method2" value="manual" disabled>ידנית</label>
 
                     <div id="fileTypeSelector">
                         <label>סוג הקובץ</label>
                         <br>
                         <label for="id_file_type_0">
-                            <input id="id_file_type_0" name="file_type" type="radio" value="csv">
+                            <input id="id_file_type_0" name="file_type" type="radio" value="csv" checked>
                             csv</label>
 
                         <label for="id_file_type_1">
@@ -107,7 +114,7 @@
                     </div>
                     <div id="manualInput"  hidden="true">
                         <br>
-                        <textarea class="form-control" for="manual_data" rows="10">id,title,address,city,data</textarea>
+                        <textarea form="id_addNewDatasetForm" class="form-control" name="manual_data" rows="10">id,title,address,city,data</textarea>
                     </div>
 
 
