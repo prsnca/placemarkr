@@ -307,18 +307,18 @@ def upload(request):
         if form.is_valid():
             # Opens the file and sends it
             # TODO - handle UTF-8 BOM??
-            data_type = form.cleaned_data['upload_method']
-            print "the data type:" + data_type
-            if data_type == 'manual':
-                print 'manual'
-                print 'the data:' + form.cleaned_data['manual_data']
-                f = open('temp.csv','wb') # TODO - add utf-8 support
-                f.write(form.cleaned_data['manual_data'])
-                f.close()
-                data = handleUploadedFile(f, 'csv')
-            elif data_type == 'file':
-                print 'file'
-                data = handleUploadedFile(request.FILES['file'], form.cleaned_data['file_type'])
+#             data_type = form.cleaned_data['upload_method']
+#             print "the data type:" + data_type
+#             if data_type == 'manual':
+#                 print 'manual'
+#                 print 'the data:' + form.cleaned_data['manual_data']
+#                 f = open('temp.csv','wb') # TODO - add utf-8 support
+#                 f.write(form.cleaned_data['manual_data'])
+#                 f.close()
+#                 data = handleUploadedFile(f, 'csv')
+#             elif data_type == 'file':
+#                 print 'file'
+            data = handleUploadedFile(request.FILES['file'], form.cleaned_data['file_type'])
             title = form.cleaned_data['title']
             description = form.cleaned_data['description']
             if create_dataset(request, title, description, data, request.user.id):
