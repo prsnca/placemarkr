@@ -6,7 +6,15 @@
 
 <div class="container">
     <div class="profilePicture col-md-2">
-                <img class="img-circle" src="{{ gravatar_url }}" />
+    	{% if user == urlUser %}
+    	<a href="https://en.gravatar.com/site/login" target="_blank" >
+    		<div id="gravatar-a" data-toggle="tooltip" data-placement="bottom" title="שנה את תמונתך ב-Gravatar.com">
+        {% endif %}
+        		<img  class="img-circle" src="{{ gravatar_url }}" />
+        {% if user == urlUser %}
+        	</div>
+        </a>
+        {% endif %}
     </div>
 	<div class="page-header col-md-10">
 		<span style="font-size: 32px;"> {% if user != urlUser %} <small><span id="star" class="glyphicon glyphicon-star-empty"> </span></small> {% endif %}
@@ -132,6 +140,7 @@
 
 <script>
 	$(document).ready(function() {
+		$("#gravatar-a").tooltip();
 		updateDatasetsList();
 
 		$("#star").click(function() {
