@@ -100,6 +100,9 @@
 		  template: [
 		  	'<div class="search-option">',
 		  	'	<span style="text-align: right;">',
+		  	'{{#gravatar_url}}',
+		  	'		<img class="search-image" src="{{gravatar_url}}"/>',
+		    '{{/gravatar_url}}',
 		    '		<span class="search-type">{{type}}</span>',
 		    '		<span class="search-name">{{name}}</span>',
 		    '	</span>',
@@ -111,7 +114,7 @@
 		
 		$('#search').on('typeahead:selected', function (object, datum) {
 		    // Example: {value: "@JakeHarding", tokens: ['Jake', 'Harding'], name: "Jake Harding", profileImageUrl: "https://twitter.com/JakeHaridng/profile_img"}
-		    console.log(datum);
+		    //console.log(datum);
 		    window.location.replace(datum.url);
 		});
 	});	
