@@ -95,6 +95,17 @@ def place(request, id):
                }
     return render(request, 'place.html', context)
 
+def contact(request):
+    if request.POST:
+        fullname = request.POST['fullname']
+        email = request.POST['email']
+        content = request.POST['content']
+        subject = fullname + " (" + email + "), " + content[:10]
+        message = "From: " + fullname + " (" + email + ")\nMessage: " + content
+        send_mail(subject, message, email,
+                  ['itay.bittan@gmail.com','prsnca@gmail.com'], fail_silently=False)
+    return HttpResponse("{\"status\":\"send successfully\"}", content_type="application/json")
+
 @login_required
 def placeVotingTable(request, id):
     place = get_object_or_404(Place, id=int(id))
