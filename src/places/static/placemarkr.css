@@ -25,6 +25,10 @@
 	font-size: 11px;
 }
 
+.search-image {
+	float: left;
+}
+
 .search-description {
 	font-size: 12px;
 }

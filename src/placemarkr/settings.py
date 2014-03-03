@@ -191,6 +191,12 @@ SOCIALACCOUNT_PROVIDERS = {
 
 DEBUG_TOOLBAR_PATCH_SETTINGS = False # issue 521
 
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = 'placemarkr_user'
+EMAIL_HOST_PASSWORD = 'placemarkr_pass'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
 if os.environ.get('DATABASE_URL'): # Heroku
     import dj_database_url
     DATABASES['default'] =  dj_database_url.config()

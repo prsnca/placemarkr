@@ -95,6 +95,17 @@ def place(request, id):
                }
     return render(request, 'place.html', context)
 
+def contact(request):
+    if request.POST:
+        fullname = request.POST['fullname']
+        email = request.POST['email']
+        content = request.POST['content']
+        subject = fullname + " (" + email + "), " + content[:10]
+        message = "From: " + fullname + " (" + email + ")\nMessage: " + content
+        send_mail(subject, message, email,
+                  ['itay.bittan@gmail.com','prsnca@gmail.com'], fail_silently=False)
+    return HttpResponse("{\"status\":\"send successfully\"}", content_type="application/json")
+
 @login_required
 def placeVotingTable(request, id):
     place = get_object_or_404(Place, id=int(id))
@@ -104,20 +115,20 @@ def placeVotingTable(request, id):
                             ("date", timesince(vote.created_on))]) for pm in place.placemarks.all() for vote in pm.votes.all()]
     return HttpResponse(json.dumps(datasetsSearch), content_type="application/json")
 
+# construct the url
+def gravatar_url(user,size):
+    return "http://www.gravatar.com/avatar/" + hashlib.md5(user.email.lower()).hexdigest() + "?" +  urllib.urlencode({'s':str(size)})
+
 @login_required
 def userHomepage(request, username):
     urlUser = get_object_or_404(User, username=username)
     places = Place.objects.all()
     userDatasets = Dataset.objects.filter(owner=urlUser)
-     
-    # construct the url
-    gravatar_url = "http://www.gravatar.com/avatar/" + hashlib.md5(urlUser.email.lower()).hexdigest() + "?"
-    gravatar_url += urllib.urlencode({'s':str(100)})
     
     context = {'urlUser': urlUser,
                'places': places,
                'userDatasets' : userDatasets,
-                'gravatar_url' : gravatar_url,
+                'gravatar_url' : gravatar_url(urlUser,100),
                 }
     return render(request, 'userHomepage.html', context)
 
@@ -152,7 +163,7 @@ def search(request):
     usersSearch = [dict([("url", reverse('userHomepage', args=(user.username,))),
                          ("name", user.first_name + " " + user.last_name),
                          ("value", user.first_name + " " + user.last_name),
-                         ("type", "משתמש"), 
+                         ("gravatar_url", gravatar_url(user,35)),
                          ("description",user.username),
                          ("tokens",[user.first_name,user.last_name, user.username])]) for user in User.objects.all()]
     searchResults = datasetsSearch + usersSearch
