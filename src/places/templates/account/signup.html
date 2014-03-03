@@ -7,14 +7,28 @@
 
       <!-- Main component for a primary marketing message or call to action -->
 <h1>הרשמה</h1>
-<form id="id_addNewDatasetForm" method="post" action="{% url 'register' %}">
+<form class="form-horizontal" id="id_addNewDatasetForm" method="post" action="{% url 'register' %}">
         {% csrf_token %}
-        {{ registration_form.as_p }}
+        {% for field in registration_form %}
+      <div class="form-group">
+          <div class="col-sm-offset-7 col-sm-3">
+              <input name="{{ field.html_name }}" class="form-control" id="inputEmail3" placeholder="{{ field.label }}" required>
+          </div>
+          <label for="{{ field.id_for_label }}" class="col-sm-2 control-label">{{ field.label }}:</label>
 
-        <a class="btn btn-default" href="/">ביטול</a>
+
+      </div>
+      {% endfor %}
+      <div class="form-group">
+          <div class="col-sm-offset-10 col-sm-2">
+              <a class="btn btn-default" href="/">ביטול</a>
         <button type="submit" id="register" class="btn btn-primary">
             הירשם
         </button>
+          </div>
+      </div>
+
+
 </form>
 
 <script src="{% static "dist/js/bootstrap.min.js" %}"></script>
