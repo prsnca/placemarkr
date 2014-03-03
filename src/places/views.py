@@ -109,14 +109,10 @@ def userHomepage(request, username):
     urlUser = get_object_or_404(User, username=username)
     places = Place.objects.all()
     userDatasets = Dataset.objects.filter(owner=urlUser)
-    
-    # Set your variables here
-    default = "http://www.example.com/default.jpg"
-    size = 100
      
     # construct the url
     gravatar_url = "http://www.gravatar.com/avatar/" + hashlib.md5(urlUser.email.lower()).hexdigest() + "?"
-    gravatar_url += urllib.urlencode({'d':default, 's':str(size)})
+    gravatar_url += urllib.urlencode({'s':str(100)})
     
     context = {'urlUser': urlUser,
                'places': places,
