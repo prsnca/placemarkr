@@ -12,7 +12,8 @@
         {% for field in registration_form %}
       <div class="form-group">
           <div class="col-sm-offset-7 col-sm-3">
-              <input name="{{ field.html_name }}" class="form-control" id="inputEmail3" placeholder="{{ field.label }}" required>
+              {{ field }}
+              <!--<input type="{{ field.type }}" name="{{ field.html_name }}" class="form-control" id="inputEmail3" placeholder="{{ field.label }}" required>-->
           </div>
           <label for="{{ field.id_for_label }}" class="col-sm-2 control-label">{{ field.label }}:</label>
 
