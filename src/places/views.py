@@ -124,7 +124,7 @@ def userHomepage(request, username):
     urlUser = get_object_or_404(User, username=username)
     places = Place.objects.all()
     userDatasets = Dataset.objects.filter(owner=urlUser)
-    
+    urlUser = request.user if urlUser == request.user else None
     context = {'urlUser': urlUser,
                'places': places,
                'userDatasets' : userDatasets,
@@ -172,7 +172,8 @@ def search(request):
 @login_required
 def datasetDetails(request, id):
     dataset = get_object_or_404(Dataset, id=id)
-    context = {'urlUser': request.user,
+    urlUser = request.user if dataset.owner == request.user else None
+    context = {'urlUser': urlUser,
                'places': dataset.places.all(),
                'dataset' : dataset}
     return render(request, 'userDataset.html', context)
@@ -180,7 +181,8 @@ def datasetDetails(request, id):
 @login_required
 def datasetList(request, id):
     dataset = get_object_or_404(Dataset, id=id)
-    context = {'urlUser': request.user,
+    urlUser = request.user if dataset.owner == request.user else None
+    context = {'urlUser': urlUser,
                'places': dataset.places.extra(select={'int_vendor_id': 'CAST(vendor_id AS INTEGER)'},order_by=['int_vendor_id']),
                'dataset' : dataset}
     return render(request, 'datasetList.html', context)
@@ -188,7 +190,8 @@ def datasetList(request, id):
 @login_required
 def datasetAlbum(request, id):
     dataset = get_object_or_404(Dataset, id=id)
-    context = {'urlUser': request.user,
+    urlUser = request.user if dataset.owner == request.user else None
+    context = {'urlUser': urlUser,
                'places': dataset.places.extra(select={'int_vendor_id': 'CAST(vendor_id AS INTEGER)'},order_by=['int_vendor_id']),
                'dataset' : dataset}
     return render(request, 'datasetAlbum.html', context)
@@ -196,7 +199,8 @@ def datasetAlbum(request, id):
 @login_required
 def datasetMap(request, id):
     dataset = get_object_or_404(Dataset, id=id)
-    context = {'urlUser': request.user,
+    urlUser = request.user if dataset.owner == request.user else None
+    context = {'urlUser': urlUser,
                'places': dataset.places.all(),
                'dataset' : dataset}
     return render(request, 'datasetMap.html', context)
