@@ -25,21 +25,26 @@ class UserCreateForm(UserCreationForm):
 class UploadFileForm(forms.Form):
     title = forms.CharField(max_length=50)
     description = forms.CharField(max_length=100)
-    file = forms.FileField()
-    file_type = forms.ChoiceField(choices=(('csv', 'csv'), ('json', 'json')), required=True, widget=forms.RadioSelect)
-    
+    upload_method = forms.ChoiceField(choices=(('file', 'file'), ('manual', 'manual')), required=True, widget=forms.RadioSelect)
+
+    file = forms.FileField(required=False)
+    file_type = forms.ChoiceField(choices=(('csv', 'csv'), ('json', 'json')), widget=forms.RadioSelect)
+
+    manual_data = forms.CharField(widget=forms.Textarea)
+
     def is_valid(self):
         # run the parent validation first
         
         valid = super(UploadFileForm, self).is_valid()
+        print "super valid: " + str(valid)
         
         if not valid:
             return False
-        
-        if not self.cleaned_data['file'].name.endswith(self.cleaned_data['file_type']):
-            self._errors['bad_file'] = "File does not match the chosen format"
-            #messages.error(request, "סיומת הקובץ לא תואמת לסוג הקובץ שנבחר")
-            return False
+        if self.cleaned_data['upload_method'] == 'file':
+            if not self.cleaned_data['file'].name.endswith(self.cleaned_data['file_type']):
+                self._errors['bad_file'] = "File does not match the chosen format"
+                #messages.error(request, "סיומת הקובץ לא תואמת לסוג הקובץ שנבחר")
+                return False
         
         return True
     
