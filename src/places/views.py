@@ -45,6 +45,8 @@ def register(request):
                                     password=request.POST['password1'])
             login(request, new_user)
             return HttpResponseRedirect('/user/' + new_user.username)
+        else:
+            return render(request, 'account/signup.html', {'registration_form' : registration_form })
     context = {'registration_form' : UserCreateForm() }
     return render(request, 'account/signup.html', context)
 
