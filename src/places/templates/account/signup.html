@@ -11,8 +11,13 @@
         {% csrf_token %}
         {% for field in registration_form %}
       <div class="form-group">
-          <div class="col-sm-offset-7 col-sm-3">
-              <input name="{{ field.html_name }}" class="form-control" id="inputEmail3" placeholder="{{ field.label }}" required>
+       <div class="col-sm-offset-4 col-sm-3">
+            {{ field.errors }}
+        </div>
+
+          <div class="col-sm-3">
+              {{ field }}
+              <!--<input type="{{ field.field.id_for_label }}" name="{{ field.html_name }}" class="form-control" id="inputEmail3" placeholder="{{ field.label }}" required>-->
           </div>
           <label for="{{ field.id_for_label }}" class="col-sm-2 control-label">{{ field.label }}:</label>
 
