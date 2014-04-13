@@ -1,3 +1,8 @@
+
+body {
+	font-family: 'Alef',Arial;
+}
+
 .profilePicture {
 	text-align: center;
 }
@@ -47,6 +52,20 @@
 	overflow: hidden;
 	white-space:nowrap;
 }
+
+.updateBlock {
+	margin: 7px;	
+}
+
+.updateRowStatus {
+	color: #89919c;	
+}
+
+.updateRowDate {
+	color: #89919c;
+	font-size: 11px;
+}
+
 /*
  * typehead.js-bootstrap3.less 0.1.4
  * https://github.com/hyspace/typehead.js-bootstrap3.less
