@@ -22,15 +22,33 @@
 	</div>
 
 	<div class="row">
-		<div class="col-md-8">
-			<h3>עדכונים</h3>
-            {% if messages %}
-            <ul class="messages">
-                {% for message in messages %}
-                <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                {% endfor %}
-            </ul>
-            {% endif %}
+<div class="col-md-8">
+			<h3>עדכונים אחרונים</h3>
+			<div class="updateBlock">
+				<button type="button" class="close" aria-hidden="true">&times;</button>&nbsp;
+				<span class="updateRowStatus">איתי ביטן הצביע בעד למקום <a href="">בניין אלקטרה</a> ממאגר <a href="">מקומות מעניינים</a></span>
+				<div class="updateRowDate">&nbsp;&nbsp;&nbsp;יום שבת, 1 למרץ 2014, 20:11</div>
+			</div>
+			<div class="updateBlock">
+				<button type="button" class="close" aria-hidden="true">&times;</button>&nbsp;
+				<span class="updateRowStatus">איתי ביטן הוסיף את <a href="">ירון דינור</a> למועדפים</span>
+				<div class="updateRowDate">&nbsp;&nbsp;&nbsp;יום שישי, 28 לפברואר 2014, 09:30</div>
+			</div>
+			<div class="updateBlock">
+				<button type="button" class="close" aria-hidden="true">&times;</button>&nbsp;
+				<span class="updateRowStatus">איתי ביטן הצביע נגד למקום <a href="">מקלט מס'1</a> ממאגר <a href="">מקלטים ציבוריים בראשון לציון</a></span>
+				<div class="updateRowDate">&nbsp;&nbsp;&nbsp;יום שלישי, 12 פברואר 2014, 01:10</div>
+			</div>
+			<div class="updateBlock">
+				<button type="button" class="close" aria-hidden="true">&times;</button>&nbsp;
+				<span class="updateRowStatus">איתי ביטן הוסיף מאגר מידע: <a href="">מקלטים ציבוריים בראשון לציון</a></span>
+				<div class="updateRowDate">&nbsp;&nbsp;&nbsp;יום שני, 4 לפברואר 2014, 16:59</div>
+			</div>
+			<div class="updateBlock">
+				<button type="button" class="close" aria-hidden="true">&times;</button>&nbsp;
+				<span class="updateRowStatus">איתי ביטן הצטרף ל-Placemarkr</span>
+				<div class="updateRowDate">&nbsp;&nbsp;&nbsp;יום ראשון, 31 לינואר 2014, 11:01</div>
+			</div>
 		</div>
 		<div class="col-md-4">
 			<div class="panel panel-default">

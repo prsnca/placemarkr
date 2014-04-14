@@ -69,6 +69,7 @@ def create_markers(places):
         geo_result = geo_code(clean_address, data['city'])
         city_result = geo_code(data['city'], data['city'])
 
+        city_location = ""
         if city_result["status"] == "OK":
             city_location = city_result["results"][0]["geometry"]["location"]
 
